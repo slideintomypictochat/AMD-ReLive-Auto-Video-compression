@@ -7,7 +7,8 @@
 #   3. creates the GitHub release v<version> with ReLiveCompressorSetup.exe and update.json attached
 # The app looks at https://github.com/<repo>/releases/latest/download/update.json, so the newest release wins.
 #
-# One-time setup: winget install GitHub.cli, then gh auth login. The repo needs at least one commit (git push) first.
+# One-time setup: winget install GitHub.cli. The first run opens the GitHub sign-in (gh auth login) if needed.
+# The repo needs at least one commit (git push) first.
 # -NoUpload builds and writes the files to dist\release without publishing (to test, or to upload by hand).
 # -Replace re-uploads the files to an existing release of the same version.
 param(
@@ -30,8 +31,15 @@ if (-not $NoUpload) {
     if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
         throw "GitHub CLI not found. Install it once with 'winget install GitHub.cli', then run 'gh auth login'."
     }
-    gh auth status --hostname github.com *> $null
-    if ($LASTEXITCODE -ne 0) { throw "GitHub CLI isn't signed in. Run 'gh auth login' once (in a new terminal), then try again." }
+    # gh writes to stderr, which 'Stop' would turn into an error, so relax it around gh calls
+    $ErrorActionPreference = 'Continue'
+    gh auth status --hostname github.com 2>$null | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Sign in to GitHub once: copy the code shown below, then paste it into the browser page that opens." -ForegroundColor Yellow
+        gh auth login --hostname github.com --git-protocol https --web
+        if ($LASTEXITCODE -ne 0) { throw "GitHub sign-in didn't finish. Run the command again to retry." }
+    }
+    $ErrorActionPreference = 'Stop'
 }
 
 & (Join-Path $PSScriptRoot 'Set-Version.ps1') -Version $Version
@@ -61,6 +69,7 @@ if ($NoUpload) { Write-Host "Not uploaded (-NoUpload). Files are in $out"; retur
 
 $body = "## What's new`n" + (($Notes | ForEach-Object { "- $_" }) -join "`n") +
         "`n`nInstalled copies update themselves (Home shows **Update available**). New install: download **$Asset** and run it."
+$ErrorActionPreference = 'Continue'
 if ($Replace) {
     gh release upload "v$Version" $exe $json --repo $Repo --clobber
 }
