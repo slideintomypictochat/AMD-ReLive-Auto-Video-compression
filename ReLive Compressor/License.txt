@@ -1,0 +1,81 @@
+RELIVE COMPRESSOR - LICENSE AGREEMENT AND TERMS OF USE
+Version 1.3
+
+Please read these terms carefully. By clicking "I accept" and installing or
+using ReLive Compressor ("the Software"), you agree to them. If you do not
+agree, click Cancel and do not install the Software.
+
+1. WHAT THE SOFTWARE DOES
+The Software looks for video recordings in a folder you choose (by default
+Videos\Radeon ReLive) and re-encodes them to the AV1 format (or HEVC on older
+graphics cards) to make them smaller. Re-encoding is lossy: the new file is very close to the original
+but is not a bit-for-bit copy.
+
+Depending on the mode you pick in Settings:
+  - Test mode makes compressed copies in a separate folder and never changes
+    your original recordings. This is the default after installation.
+  - Move mode replaces each recording with its compressed version and moves
+    the original to a folder you choose.
+  - Replace mode replaces each recording with its compressed version and
+    PERMANENTLY DELETES THE ORIGINAL. Deleted originals cannot be recovered
+    by the Software.
+Before an original is removed or moved, the Software checks that the new file
+plays for the same length, has video and audio, and is smaller. This check
+lowers the risk of losing a recording but cannot rule it out.
+
+2. YOUR RESPONSIBILITY
+You are responsible for choosing the mode and folders, and for keeping
+backups of any recordings you cannot afford to lose. Try Test mode first and
+check the copies before you switch to Move or Replace.
+
+3. AUTOMATIC OPERATION
+If you turn on automatic compression, the Software runs by itself when the PC
+has been idle (no keyboard or mouse input) for the number of minutes you set,
+and pauses when you return. It uses your graphics card's video encoder, which
+uses power and produces heat while it runs. You can turn automatic compression
+off at any time in the app or from its tray icon.
+
+4. SYSTEM REQUIREMENTS
+Windows 10 or 11 (64-bit) and an AMD Radeon graphics card with a hardware
+video encoder and a current driver: Radeon RX 7000 series or newer for AV1,
+or Radeon RX 400 series or newer for HEVC. On other hardware the Software
+installs but cannot compress anything.
+
+5. LICENSE
+You may install and use the Software on your own computers, free of charge,
+and give unmodified copies of the installer to others under these same
+terms. You may not sell the Software or remove these terms from it.
+
+6. PRIVACY
+The Software works entirely on your computer. It does not connect to the
+internet, does not collect or send any data, and contains no advertising or
+tracking. Its settings and log are stored in its installation folder.
+
+7. UNINSTALLING
+You can remove the Software at any time from Windows Settings > Apps >
+Installed apps, from the Start menu ("Uninstall ReLive Compressor"), or from
+the app's Settings page. Uninstalling removes the program, its shortcuts and
+its settings. It never deletes your recordings or test copies.
+
+8. NO WARRANTY
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+
+9. LIMITATION OF LIABILITY
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, IN NO EVENT SHALL THE AUTHOR OR
+DISTRIBUTOR OF THE SOFTWARE BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, INCLUDING LOSS OF RECORDINGS OR OTHER DATA, HARDWARE DAMAGE OR
+LOST TIME, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR ITS USE.
+
+10. THIRD-PARTY SOFTWARE
+The Software includes FFmpeg (ffmpeg.exe), which is licensed separately under
+the GNU General Public License version 3. Its terms are in
+ThirdPartyNotices.txt and FFmpeg-GPLv3.txt in the installation folder. Nothing
+in this agreement limits your rights under that license.
+
+11. TRADEMARKS
+ReLive Compressor is an independent tool. It is not made, endorsed or
+supported by Advanced Micro Devices, Inc. (AMD). AMD, Radeon, ReLive and
+Adrenalin are trademarks of Advanced Micro Devices, Inc.

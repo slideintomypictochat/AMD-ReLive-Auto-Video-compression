@@ -1,0 +1,24 @@
+THIRD-PARTY SOFTWARE NOTICES - RELIVE COMPRESSOR
+
+ReLive Compressor runs the following program as a separate executable.
+
+------------------------------------------------------------------------
+FFmpeg (ffmpeg.exe)
+------------------------------------------------------------------------
+Version:  n7.1.1-23-ge8caad2929-20250617 (64-bit Windows build, GPL variant)
+Website:  https://ffmpeg.org
+Build:    https://github.com/BtbN/FFmpeg-Builds (release 2025-06-17)
+Source:   https://github.com/FFmpeg/FFmpeg/tree/n7.1.1
+          (build scripts and the source of every bundled library are listed
+          in the BtbN/FFmpeg-Builds repository)
+
+FFmpeg is a trademark of Fabrice Bellard, originator of the FFmpeg project.
+
+This build of FFmpeg is licensed under the GNU General Public License,
+version 3 (GPLv3). The full license text is in FFmpeg-GPLv3.txt, next to this
+file. FFmpeg is free software: you can redistribute it and/or modify it under
+the terms of the GPLv3. It is distributed WITHOUT ANY WARRANTY; without even
+the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+ffmpeg.exe is included unmodified. ReLive Compressor only starts it as a
+separate program and is not part of FFmpeg.

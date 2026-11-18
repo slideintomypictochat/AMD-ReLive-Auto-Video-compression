@@ -1,0 +1,8 @@
+# build output (installers are published as GitHub releases, not committed)
+/dist/
+# ffmpeg.exe is ~130 MB; see README for where to get it
+/Build/ffmpeg/
+# local tool caches and settings
+/graft/
+/.ignore
+/.claude/
