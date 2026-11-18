@@ -5,7 +5,7 @@
 param(
     [string]$FFmpeg = '',
     [string]$AppDir = (Join-Path $env:LOCALAPPDATA 'Programs\ReLive Compressor'),
-    [string]$Version = '1.6.0',
+    [string]$Version = '1.6.1',
     [string]$Publisher = 'ReLive Compressor',
     [switch]$NoStartup,
     [switch]$DesktopShortcut,

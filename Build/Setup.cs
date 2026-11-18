@@ -25,15 +25,15 @@ using Microsoft.Win32;
 [assembly: AssemblyProduct("ReLive Compressor")]
 [assembly: AssemblyCompany("ReLive Compressor")]
 [assembly: AssemblyCopyright("Free to use and share. Provided as is.")]
-[assembly: AssemblyVersion("1.6.0.0")]
-[assembly: AssemblyFileVersion("1.6.0.0")]
+[assembly: AssemblyVersion("1.6.1.0")]
+[assembly: AssemblyFileVersion("1.6.1.0")]
 
 namespace ReLiveSetup
 {
     static class Program
     {
         public const string AppName = "ReLive Compressor";
-        public const string Version = "1.6.0";
+        public const string Version = "1.6.1";
         public const string Publisher = "ReLive Compressor";
         public const string UninstallKey = @"Software\Microsoft\Windows\CurrentVersion\Uninstall\ReLiveCompressor";
         public static string FakeExisting;   // /screens=<dir> /existing=<dir>: render the maintenance pages

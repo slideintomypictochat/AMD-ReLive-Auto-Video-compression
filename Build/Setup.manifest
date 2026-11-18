@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
-  <assemblyIdentity version="1.6.0.0" name="ReLiveCompressor.Setup" type="win32"/>
+  <assemblyIdentity version="1.6.1.0" name="ReLiveCompressor.Setup" type="win32"/>
   <description>ReLive Compressor Setup</description>
   <!-- asInvoker: per-user install, and stops Windows from auto-elevating an exe named "Setup" -->
   <trustInfo xmlns="urn:schemas-microsoft-com:asm.v3">
