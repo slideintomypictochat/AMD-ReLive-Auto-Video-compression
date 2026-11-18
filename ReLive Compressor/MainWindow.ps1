@@ -1154,11 +1154,13 @@ function Update-VersionText {
 # Downloads the new Setup.exe from GitHub, checks it against update.json (size + SHA-256) and runs it in update mode.
 function Invoke-UpdateInstall {
     $u = $script:Update
-    if (-not $u) { return }
+    if (-not $u -or [string]$u.version -notmatch '^\d+\.\d+\.\d+$') { return }
     $url = if ($u.url) { [string]$u.url } else { "https://github.com/$UpdateRepo/releases/download/v$($u.version)/$($u.asset)" }
     $uri = [Uri]$url
-    # only ever download from GitHub (UpdateUrl is a hidden test setting)
-    if (-not $script:Settings.UpdateUrl -and -not ($uri.Scheme -eq 'https' -and $uri.Host -eq 'github.com')) {
+    # only ever download from this app's own GitHub releases (UpdateUrl is a hidden test setting)
+    $official = $uri.Scheme -eq 'https' -and $uri.Host -eq 'github.com' -and
+                $uri.AbsolutePath.StartsWith("/$UpdateRepo/releases/download/", [StringComparison]::OrdinalIgnoreCase)
+    if (-not $script:Settings.UpdateUrl -and -not $official) {
         [void](Show-RlcMessage 'Update' "This update doesn't come from the official download page, so it wasn't installed.`n`n$url"); return
     }
     if ((Test-WorkerRunning) -and $script:RunKind -ne 'scan') {
