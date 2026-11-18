@@ -14,14 +14,24 @@ param(
     [Parameter(Mandatory = $true)][string]$Version,
     [string[]]$Notes = @(),
     [switch]$NoUpload,
-    [switch]$Replace
+    [switch]$Replace,
+    # powershell -File hands "-Notes "A", "B"" over as -Notes A plus loose arguments; collect those too
+    [Parameter(ValueFromRemainingArguments = $true)][string[]]$MoreNotes = @()
 )
 $ErrorActionPreference = 'Stop'
 $Repo  = 'slideintomypictochat/AMD-ReLive-Auto-Video-compression'   # same as $UpdateRepo in ReLiveCompressor.ps1
 $Asset = 'ReLiveCompressorSetup.exe'                                # no spaces: GitHub renames those
+$Notes = @(@($Notes) + @($MoreNotes) | ForEach-Object { $_.Trim().TrimEnd(',').Trim() } | Where-Object { $_ })
 
-if (-not $NoUpload -and -not (Get-Command gh -ErrorAction SilentlyContinue)) {
-    throw "GitHub CLI not found. Install it once with 'winget install GitHub.cli', then run 'gh auth login'."
+if (-not $NoUpload) {
+    # a terminal opened before winget installed gh doesn't have it on PATH yet
+    $ghDir = Join-Path $env:ProgramFiles 'GitHub CLI'
+    if (-not (Get-Command gh -ErrorAction SilentlyContinue) -and (Test-Path (Join-Path $ghDir 'gh.exe'))) { $env:Path += ";$ghDir" }
+    if (-not (Get-Command gh -ErrorAction SilentlyContinue)) {
+        throw "GitHub CLI not found. Install it once with 'winget install GitHub.cli', then run 'gh auth login'."
+    }
+    gh auth status --hostname github.com *> $null
+    if ($LASTEXITCODE -ne 0) { throw "GitHub CLI isn't signed in. Run 'gh auth login' once (in a new terminal), then try again." }
 }
 
 & (Join-Path $PSScriptRoot 'Set-Version.ps1') -Version $Version
