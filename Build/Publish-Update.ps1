@@ -39,6 +39,12 @@ if (-not $NoUpload) {
         gh auth login --hostname github.com --git-protocol https --web
         if ($LASTEXITCODE -ne 0) { throw "GitHub sign-in didn't finish. Run the command again to retry." }
     }
+    gh release view "v$Version" --repo $Repo 2>$null | Out-Null
+    if ($LASTEXITCODE -eq 0 -and -not $Replace) {
+        Write-Host "Version $Version is already published: https://github.com/$Repo/releases/tag/v$Version" -ForegroundColor Yellow
+        Write-Host "Nothing to do. For new changes, publish a higher version (e.g. -Version 1.6.2)."
+        exit 0
+    }
     $ErrorActionPreference = 'Stop'
 }
 
